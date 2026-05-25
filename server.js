@@ -28,12 +28,10 @@ connectDB();
 app.use(helmet());
 app.use(mongoSanitize());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 // ── Body Parsers ─────────────────────────────────────────────────────
 // Stripe webhook requires raw body — must come BEFORE express.json()
 app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
