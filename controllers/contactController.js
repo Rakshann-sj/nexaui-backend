@@ -12,6 +12,18 @@ exports.submitContact = async (req, res, next) => {
 
     // Save to DB
     await Message.create({ name, email, subject, message });
+await fetch('http://localhost:5678/webhook/nexaui-contact', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    subject,
+    message
+  })
+});
 
     // Notify admin + auto-reply to sender (non-blocking)
     Promise.all([
