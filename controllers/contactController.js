@@ -13,7 +13,7 @@ exports.submitContact = async (req, res, next) => {
     // Save to DB
     await Message.create({ name, email, subject, message });
 try {
-  await fetch('http://172.21.208.1:5678/webhook/nexaui-contact', {
+  await fetch('http://localhost:5678/webhook/nexaui-contact', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
